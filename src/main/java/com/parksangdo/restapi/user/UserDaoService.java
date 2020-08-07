@@ -19,7 +19,7 @@ public class UserDaoService {
         users.add(new User(4, "lth", new Date()));
     }
 
-    public List<User> findAll() {
+    public List<User> findAll() { // wtf
         return users;
     }
 
@@ -28,7 +28,7 @@ public class UserDaoService {
             user.setId(++userCount);
         }
         users.add(user);
-        return users;
+        return user;
     }
 
     public User findOne(int id) {
@@ -37,6 +37,5 @@ public class UserDaoService {
         }
         return null;
     }
-
 
 }
