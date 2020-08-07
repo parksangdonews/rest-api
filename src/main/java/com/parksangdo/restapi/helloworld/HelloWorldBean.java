@@ -1,4 +1,4 @@
-package com.parksangdo.restapi;
+package com.parksangdo.restapi.helloworld;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
