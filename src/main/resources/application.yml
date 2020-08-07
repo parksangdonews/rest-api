@@ -2,3 +2,13 @@
 # defalut = 8080
 server:
   port: 8080
+
+
+
+# logging
+logging:
+  level:
+    org.springframework:  debug
+
+
+
