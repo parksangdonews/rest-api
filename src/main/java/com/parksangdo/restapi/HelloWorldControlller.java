@@ -12,14 +12,10 @@ public class HelloWorldControlller {
         return "helo World.";
     }
 
-    // java bean return
-    @GetMapping(path = "hello-world-bean")
+    // java bean return // auto json return, in body
+    @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean() {
-        return new HelloWorldBean();
+        return new HelloWorldBean("Hello, World!!");
     }
-
-
-
-
 
 }
