@@ -14,10 +14,10 @@ public class UserDaoService {
     private int userCount = 4;
 
     static {
-        users.add(new User(1, "psd", new Date()));
-        users.add(new User(2, "osy", new Date()));
-        users.add(new User(3, "kms", new Date()));
-        users.add(new User(4, "lth", new Date()));
+        users.add(new User(1, "psd", new Date(), "pass1", "810101-1100110"));
+        users.add(new User(2, "osy", new Date(), "pass2", "810101-1100110"));
+        users.add(new User(3, "kms", new Date(), "pass3", "810101-1100110"));
+        users.add(new User(4, "lth", new Date(), "pass4", "810101-1100110"));
     }
 
     public List<User> findAll() { // wtf
