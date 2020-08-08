@@ -1,6 +1,12 @@
 package com.parksangdo.restapi.user;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,12 +25,12 @@ public class UserController {
     }
 
     @GetMapping(path = "/users")
-    public List<User> retriveAllUsers() {
+    public List<User> retrieveAllUsers() {
         return userDaoService.findAll();
     }
 
     @GetMapping(path = "/users/{id}")
-    public User retriveUser(@PathVariable int id) throws UserNotFoundException {
+    public User retrieveUser(@PathVariable int id) throws UserNotFoundException {
         User user = userDaoService.findOne(id);
         if (user == null) {
             throw new UserNotFoundException(String.format("ID[%s] is not found.", String.valueOf(id)));
@@ -46,9 +52,6 @@ public class UserController {
         if (user == null) {
             throw new UserNotFoundException(String.format("ID[%s] is not found.", String.valueOf(id)));
         }
-        System.out.println(Arrays.toString(userDaoService.findAll().toArray()));
-
-
     }
 
 }
