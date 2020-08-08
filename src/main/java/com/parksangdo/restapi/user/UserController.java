@@ -1,19 +1,17 @@
 package com.parksangdo.restapi.user;
 
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import org.springframework.beans.BeanUtils;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -29,13 +27,25 @@ public class UserController {
         return userDaoService.findAll();
     }
 
+
+    //hateos 적용
     @GetMapping(path = "/users/{id}")
-    public User retrieveUser(@PathVariable int id) throws UserNotFoundException {
+    public Resource<User> retrieveUser(@PathVariable int id) throws UserNotFoundException {
+
         User user = userDaoService.findOne(id);
+
         if (user == null) {
             throw new UserNotFoundException(String.format("ID[%s] is not found.", String.valueOf(id)));
         }
-        return user;
+
+        // hateos
+        Resource<User> resource = new Resource<>(user);
+        // link : retrieveAllUsers <-> all-users
+        ControllerLinkBuilder linkTo = linkTo(
+                methodOn(this.getClass()).retrieveAllUsers());
+        resource.add(linkTo.withRel("all-users"));
+
+        return resource;
     }
 
     @PostMapping(path = "/users")
