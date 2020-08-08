@@ -15,3 +15,15 @@ logging:
 spring:
   messages:
     basename: messages
+# 보안
+  security:
+    user:
+      name: username
+      password: passw0rd
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
