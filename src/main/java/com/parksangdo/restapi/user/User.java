@@ -8,13 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 // domain class
 
@@ -26,6 +24,9 @@ import java.util.Date;
 @ApiModel(description = "Domain Object for User Detail Infomations.")
 @Entity
 public class User {
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,4 +49,14 @@ public class User {
     @ApiModelProperty(notes = "JUMIN NO")
     private String ssn;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
+    public User(int id, String name, Date joinDate, String password, String ssn) {
+        this.id = id;
+        this.name = name;
+        this.joinDate = joinDate;
+        this.password = password;
+        this.ssn = ssn;
+    }
 }
