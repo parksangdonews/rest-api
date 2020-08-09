@@ -1,15 +1,11 @@
-
 # defalut = 8080
 server:
   port: 8080
-
-
 
 # logging
 logging:
   level:
     org.springframework:  debug
-
 
 # 다국어 처리
 spring:
@@ -20,7 +16,12 @@ spring:
     user:
       name: username
       password: passw0rd
-
+# jpa
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
 
 management:
   endpoints:
