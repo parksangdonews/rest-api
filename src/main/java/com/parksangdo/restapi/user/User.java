@@ -22,7 +22,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonFilter("UserInfo")
-@JsonIgnoreProperties(value={"password","ssn"})
+@JsonIgnoreProperties(value = {"password", "ssn"}, allowSetters = true, ignoreUnknown = true)
 @ApiModel(description = "Domain Object for User Detail Infomations.")
 @Entity
 public class User {
@@ -31,7 +31,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Size(min = 2, message="Name 은 2글자 이상 입력하세요.")
+    @Size(min = 2, message = "Name 은 2글자 이상 입력하세요.")
     @ApiModelProperty(notes = "User Name Input")
     private String name;
 
