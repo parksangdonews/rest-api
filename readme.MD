@@ -1,7 +1,7 @@
 #rest-api
 
 ----
-java API 기능에 대한 기록.
+Java API & JPA 기능에 대한 순차 구현과 기록. (20.08.08 ~ 20.08.10)
 ----
 # Restful API
 - feat. Save Posting with user's info. parks 2 minutes ago
