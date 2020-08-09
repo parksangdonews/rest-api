@@ -25,9 +25,6 @@ import java.util.List;
 @Entity
 public class User {
 
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

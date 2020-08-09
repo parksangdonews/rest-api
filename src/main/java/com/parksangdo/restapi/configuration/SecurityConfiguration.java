@@ -13,9 +13,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+        http.authorizeRequests().antMatchers("/jpa/**").hasAnyAuthority();
         http.csrf().disable();
         http.headers().frameOptions().disable();
-
     }
 
     @Autowired
@@ -25,8 +25,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("sd")
                 .password("{noop}test1234")
                 .roles("USER");
-
     }
-
 
 }
